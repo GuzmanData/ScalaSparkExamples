@@ -1,6 +1,7 @@
 package com.guzmandata.examples.spark.commons
 
 import org.apache.log4j.{Level, Logger}
+import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
 trait InitSpark {
@@ -16,7 +17,7 @@ trait InitSpark {
     .config("spark.sql.warehouse.dir", "file:///C:/temp") // Necessary to work around a Windows bug in Spark 2.0.0; omit if you're not on Windows.
     .getOrCreate()
 
-  import spark.implicits._
+  var sparkConf = new SparkConf().set("spark.sql.crossJoin.enabled", "true")
 
 
 }
